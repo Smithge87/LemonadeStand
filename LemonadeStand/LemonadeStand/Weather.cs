@@ -8,5 +8,6 @@ namespace LemonadeStand
 {
     class Weather
     {
+        public int days;
     }
 }

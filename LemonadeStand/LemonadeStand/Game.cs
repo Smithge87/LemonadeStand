@@ -13,6 +13,7 @@ namespace LemonadeStand
         Weather weather = new Weather();
         Store store = new Store();
         Player player = new Player();
+        Recipe recipe = new Recipe();
         public void StartGame()
         {
             EnterGame();
@@ -80,6 +81,8 @@ namespace LemonadeStand
                         DisplayDailyMenu();
                         break;
                     case ("2"):
+                        Console.Clear();
+                        recipe.DisplayRecipeMenu();
                         break;
                     case ("3"):
                         break;

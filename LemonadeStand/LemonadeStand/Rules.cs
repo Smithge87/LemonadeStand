@@ -17,7 +17,7 @@ namespace LemonadeStand
             ExplainWeather();
             ExplainGame();
             ExplainEnding();
-            Console.WriteLine("Please press 'enter' to return to the Main Menu");
+            Console.WriteLine("\n\n\n\n\nPlease press 'enter' to return to the Main Menu");
             Console.ReadLine();
             Console.Clear();
         }

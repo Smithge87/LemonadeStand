@@ -10,10 +10,7 @@ namespace LemonadeStand
     {
         public string name;
         public double money = 10.00;
-        public int lemons;
-        public int cups;
-        public int sugars;
-        public int iceCubes;
+        public Inventory items = new Inventory();
 
         public void BalanceCheck()
         {

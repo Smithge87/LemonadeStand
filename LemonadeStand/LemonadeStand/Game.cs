@@ -9,11 +9,11 @@ namespace LemonadeStand
     class Game
     {
         Rules rules = new Rules();
-        Inventory items = new Inventory();
         Weather weather = new Weather();
         Store store = new Store();
         Player player = new Player();
         Recipe recipe = new Recipe();
+        Pitcher pitcher = new Pitcher();
         public void StartGame()
         {
             EnterGame();
@@ -54,10 +54,10 @@ namespace LemonadeStand
             Console.WriteLine("You have ${0} left to spend\n\n", player.money);
             Console.WriteLine(" INVENTORY");
             Console.WriteLine("===========\n");
-            Console.WriteLine(" {0} lemons\n", player.lemons);
-            Console.WriteLine(" {0} paper cups\n", player.cups);
-            Console.WriteLine(" {0} cups of sugar\n", player.sugars);
-            Console.WriteLine(" {0} ice cubes\n", player.iceCubes);
+            Console.WriteLine(" {0} lemons\n", (player.items.lemons.Count));
+            Console.WriteLine(" {0} paper cups\n", player.items.cups.Count);
+            Console.WriteLine(" {0} cups of sugar\n", player.items.cupsOfSugar.Count);
+            Console.WriteLine(" {0} ice cubes\n", player.items.iceCubes.Count);
         }
         public void DisplayDailyChoices()
         {
@@ -83,8 +83,14 @@ namespace LemonadeStand
                     case ("2"):
                         Console.Clear();
                         recipe.DisplayRecipeMenu();
+                        DisplayDailyMenu();
                         break;
                     case ("3"):
+                        Console.Clear();
+                        pitcher.DisplayPitcherMenu();
+                        Console.Clear();
+                        DisplayDailyMenu();
+                    
                         break;
                     case ("4"):
                         rules.GetRules();

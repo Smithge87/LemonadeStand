@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LemonadeStand;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ namespace LemonadeStand
 {
     class Store
     {
+        public int amountToBuy;
+
         public void BuyInventoryMenu(Player player)
         {
             Console.WriteLine("\n\n\n WHAT WOULD YOU LIKE TO BUY?");
@@ -17,26 +20,22 @@ namespace LemonadeStand
             Console.WriteLine(" 3) Sugar\n");
             Console.WriteLine(" 4) Ice\n");
             Console.WriteLine(" 5) Return to Main Menu\n");
-            int choice = int.Parse(Console.ReadLine());
+            string choice = Console.ReadLine();
             switch (choice)
             {
-                case (1):
-
-                    BuyInventory(player, 25, .50, "CUPS", ref player.cups);
+                case ("1"):
+                    BuyInventory(25, .50, "CUPS", player.items.BuyCups, player);
                     break;
-                case (2):
-
-                    BuyInventory(player, 15, .40, "LEMONS", ref player.lemons);
+                case ("2"):
+                    BuyInventory(15, .40, "LEMONS", player.items.BuyLemons, player);
                     break;
-                case (3):
-
-                    BuyInventory(player, 20, .45, "SUGARS", ref player.sugars);
+                case ("3"):
+                    BuyInventory(20, .45, "SUGARS", player.items.BuySugar, player);
                     break;
-                case (4):
-
-                    BuyInventory(player, 35, .30, "ICE CUBES", ref player.iceCubes);
+                case ("4"):
+                    BuyInventory(35, .30, "ICE CUBES", player.items.BuyIceCubes, player);
                     break;
-                case (5):
+                case ("5"):
                     break;
                 default:
                     Console.Clear();
@@ -45,7 +44,7 @@ namespace LemonadeStand
                     break;
             }
         }
-        public int BuyInventory(Player player, int quantity, double price, string buying, ref int purchasing)
+        public void BuyInventory(int quantity, double price, string buying, Action<int> Purchase, Player player)
         {
             {
                 Console.WriteLine("\n\n HOW MANY {0} WOULD YOU LIKE TO BUY?", buying);
@@ -57,28 +56,31 @@ namespace LemonadeStand
 
                 if (choice == "1")
                 {
-                    purchasing = +quantity;
+                    amountToBuy = +quantity;
                     player.money -= price;
+                    Purchase(amountToBuy);
                 }
                 else if (choice == "2")
                 {
-                    purchasing += (quantity * 2);
+                    amountToBuy += (quantity * 2);
                     player.money -= (price * 2);
+                    Purchase(amountToBuy);
 
                 }
                 else if (choice == "3")
                 {
-                    purchasing = +(quantity * 3);
+                    amountToBuy = +(quantity * 3);
                     player.money -= (price * 3);
+                    Purchase(amountToBuy);
                 }
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\n\nYOU BOUGHT {0} {1},", quantity, buying);
                 Console.ResetColor();
                 BuyInventoryMenu(player);
-                return purchasing;
+
             }
-            
+
 
         }
         public void BalanceCheck(Player player)
@@ -91,10 +93,8 @@ namespace LemonadeStand
             {
                 Console.WriteLine("Sorry, you can't afford to do that");
             }
-
         }
     }
-
 
     
 }

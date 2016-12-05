@@ -18,7 +18,7 @@ namespace LemonadeStand
             DisplayCurrentRecipe();
             DisplayCurrentPrice();
             ChangeRecipeOrPrice();
-            Console.ReadLine();
+            
         }
 
         public void DisplayCurrentRecipe()
@@ -66,6 +66,13 @@ namespace LemonadeStand
                     iceCubes += iceAdd;
                     Console.Clear();
                     DisplayRecipeMenu();
+                    break;
+                case("4"):
+                    Console.WriteLine("How much would you like to charge per cup? ($0.00)");
+                    double cupPrice = double.Parse(Console.ReadLine());
+                    break;
+                case ("5"):
+
                     break;
                 default:
                     Console.WriteLine("Please enter a number 1-3");

@@ -43,6 +43,7 @@ namespace LemonadeStand
             Console.WriteLine("\n 2) Number of Sugars\n");
             Console.WriteLine("\n 3) Number of Ice Cubes\n");
             Console.WriteLine("\n 4) Price per Cup\n");
+            Console.WriteLine("\n 4) Return to Main Menu");
             string choice = Console.ReadLine();
             switch (choice)
             {
@@ -75,7 +76,7 @@ namespace LemonadeStand
 
                     break;
                 default:
-                    Console.WriteLine("Please enter a number 1-3");
+                    Console.WriteLine("Please enter a number 1-5");
                     Console.ReadKey();
                     break;
             }

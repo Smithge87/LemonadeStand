@@ -10,6 +10,7 @@ namespace LemonadeStand
     class Store
     {
         public int amountToBuy;
+        public double cost;
 
         public void BuyInventoryMenu(Player player)
         {
@@ -30,7 +31,7 @@ namespace LemonadeStand
                     BuyInventory(15, .40, "LEMONS", player.items.BuyLemons, player);
                     break;
                 case ("3"):
-                    BuyInventory(20, .45, "SUGARS", player.items.BuySugar, player);
+                    BuyInventory(20, .45, "CUPS OF SUGAR", player.items.BuySugar, player);
                     break;
                 case ("4"):
                     BuyInventory(35, .30, "ICE CUBES", player.items.BuyIceCubes, player);
@@ -57,20 +58,23 @@ namespace LemonadeStand
                 if (choice == "1")
                 {
                     amountToBuy = +quantity;
-                    player.money -= price;
+                    cost = price;
+                    player.CheckBalance();
                     Purchase(amountToBuy);
                 }
                 else if (choice == "2")
                 {
                     amountToBuy += (quantity * 2);
-                    player.money -= (price * 2);
+                    cost = (price * 2);
+                    player.CheckBalance();
                     Purchase(amountToBuy);
 
                 }
                 else if (choice == "3")
                 {
                     amountToBuy = +(quantity * 3);
-                    player.money -= (price * 3);
+                    cost = (price * 3);
+                    player.CheckBalance();
                     Purchase(amountToBuy);
                 }
                 Console.Clear();
@@ -83,17 +87,7 @@ namespace LemonadeStand
 
 
         }
-        public void BalanceCheck(Player player)
-        {
-            if (player.money >= 0)
-            {
-                Console.WriteLine("Purchase Complete");
-            }
-            else if (player.money < 0)
-            {
-                Console.WriteLine("Sorry, you can't afford to do that");
-            }
-        }
+
     }
 
     

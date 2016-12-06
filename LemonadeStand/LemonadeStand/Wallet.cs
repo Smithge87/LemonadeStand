@@ -8,5 +8,6 @@ namespace LemonadeStand
 {
     class Wallet
     {
+        public double startingCash = 10;
     }
 }

@@ -8,10 +8,20 @@ namespace LemonadeStand
 {
     class Inventory
     {
+        public Recipe recipe;
+        public Pitcher pitcher;
+        public Inventory(Recipe recipe)
+        {
+            this.recipe = recipe;
+            pitcher = new Pitcher();
+
+        }
         public List<Lemon> lemons = new List<Lemon>();
         public List<Sugar> cupsOfSugar = new List<Sugar>();
         public List<IceCube> iceCubes = new List<IceCube>();
         public List<Cup> cups = new List<Cup>();
+        public List<Pitcher> pitchers = new List<Pitcher>();
+    
 
         public void BuyLemons(int amountToBuy)
         {
@@ -24,13 +34,6 @@ namespace LemonadeStand
                 {
                     amountToBuy = 0;
                 }
-        }
-        public void UseLemons(int amountToUse)
-        {
-            for (int i = 0; i < amountToUse; i--)
-            {
-                lemons.Remove(new Lemon());
-            }
         }
         public void BuyCups(int amountToBuy)
         {
@@ -68,5 +71,82 @@ namespace LemonadeStand
                     amountToBuy = 0;
                 }
         }
+        public void UseLemons(int amountToUse)
+        {
+            for (int i = 0; i < amountToUse; i--)
+            {
+                lemons.Remove(new Lemon());
+            }
+        }
+        public void UseSugar(int amountToUse)
+        {
+            for (int i = 0; i < amountToUse; i--)
+            {
+                cupsOfSugar.Remove(new Sugar());
+            }
+        }
+        public void UseIceCubes(int amountToUse)
+        {
+            for (int i = 0; i < amountToUse; i--)
+            {
+                iceCubes.Remove(new IceCube());
+            }
+        }
+        public void UseCups(int amountToUse)
+        {
+            for (int i = 0; i < amountToUse; i--)
+            {
+                cups.Remove(new Cup());
+            }
+        }
+        public void MakePitcher()
+        {
+            pitchers.Add(new Pitcher());
+            UseSugar(recipe.sugars);
+            UseLemons(recipe.lemons);
+            UseIceCubes(recipe.iceCubes);
+            UseCups(-10);
+        }
+        public void DisplayPitcherMenu()
+        {
+            Console.WriteLine("\n\n PITCHER MENU");
+            Console.WriteLine("==============");
+            Console.WriteLine("\nYou curently have {0} pitchers mixed. (10 cups per pitcher)", pitchers.Count);
+            CreatePitcherMenu();
+            Console.ReadLine();
+        }
+        public void CreatePitcherMenu()
+        {
+            Console.WriteLine("\n\n WHAT WOULD YOU LIKE TO DO?");
+            Console.WriteLine("============================");
+            Console.WriteLine(" 1) Mix a pitcher");
+            Console.WriteLine(" 2) Back to Main Menu");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case ("1"):
+                   
+                    if ((pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe)) == true)
+                    {
+                        MakePitcher();
+                        Console.WriteLine("Pitcher Mixed!");
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("\n\nYou do not have enough resources to do that\n");
+                        DisplayPitcherMenu();
+                    }                                        
+                    break;
+                case ("2"):
+                    break;
+                default:
+                    Console.WriteLine("Please enter a number 1-2");
+                    Console.ReadKey();
+                    break;
+
+            }
+        }
+    
     }
 }

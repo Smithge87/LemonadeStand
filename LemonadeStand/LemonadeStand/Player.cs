@@ -9,22 +9,34 @@ namespace LemonadeStand
     class Player
     {
         public string name;
-        public double money = 10.00;
-        public Inventory items = new Inventory();
-
-        public void BalanceCheck()
+        public Inventory items;
+        public Wallet wallet;
+        public Store store;
+        public Recipe recipe;
+        public Player()
         {
-            if (money >= 0)
-            {
-                Console.WriteLine("Purchase Complete");
-            }
-            else if (money < 0)
-            {
-                Console.WriteLine("Sorry, you can't afford to do that");
-            }
-
+            recipe =new Recipe();
+            store = new Store();
+            wallet = new Wallet();
+            items= new Inventory(recipe);
         }
-
+        public void CheckBalance()
+        {
+            bool balanced = true;
+            while (balanced == true)
+            {
+                if ((wallet.startingCash - store.cost) >= 0)
+                {
+                    wallet.startingCash -= store.cost;
+                    balanced = false;
+                }
+                else
+                {
+                    Console.WriteLine("You dont have enough money to do that");
+                    balanced = false;
+                }
+            }
+        }
 
     }
 }

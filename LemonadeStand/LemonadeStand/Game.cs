@@ -10,10 +10,10 @@ namespace LemonadeStand
     {
         Rules rules = new Rules();
         Weather weather = new Weather();
-        Store store = new Store();
+
         Player player = new Player();
-        Recipe recipe = new Recipe();
-        Pitcher pitcher = new Pitcher();
+        
+
         public void StartGame()
         {
             EnterGame();
@@ -51,7 +51,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("\n\n LETS GET READY FOR YOUR DAY!");
             Console.WriteLine("==============================\n\n");
-            Console.WriteLine("You have ${0} left to spend\n\n", player.money);
+            Console.WriteLine("You have ${0} left to spend\n\n", player.wallet.startingCash);
             Console.WriteLine(" INVENTORY");
             Console.WriteLine("===========\n");
             Console.WriteLine(" {0} lemons\n", (player.items.lemons.Count));
@@ -76,18 +76,19 @@ namespace LemonadeStand
                 {
                     case ("1"):
                         Console.Clear();
-                        store.BuyInventoryMenu(player);
+                        player.store.BuyInventoryMenu(player);
                         Console.Clear();
                         DisplayDailyMenu();
                         break;
                     case ("2"):
                         Console.Clear();
-                        recipe.DisplayRecipeMenu();
+                        player.recipe.DisplayRecipeMenu();
                         DisplayDailyMenu();
                         break;
                     case ("3"):
                         Console.Clear();
-                        pitcher.DisplayPitcherMenu();
+                        player.items.DisplayPitcherMenu();
+                        
                         Console.Clear();
                         DisplayDailyMenu();
                     

@@ -43,37 +43,39 @@ namespace LemonadeStand
             Console.WriteLine("\n 2) Number of Sugars\n");
             Console.WriteLine("\n 3) Number of Ice Cubes\n");
             Console.WriteLine("\n 4) Price per Cup\n");
-            Console.WriteLine("\n 4) Return to Main Menu");
+            Console.WriteLine("\n 5) Return to Main Menu\n");
             string choice = Console.ReadLine();
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("\nHow many lemons would you like to add?");
+                    Console.WriteLine("\nHow many lemons would you like to add?\n");
                     int lemonAdd = int.Parse(Console.ReadLine());
                     lemons += lemonAdd;
                     Console.Clear();
                     DisplayRecipeMenu();
                     break;
                 case "2":
-                    Console.WriteLine("\nHow many sugars would you like to add?");
+                    Console.WriteLine("\nHow many sugars would you like to add?\n");
                     int sugarAdd = int.Parse(Console.ReadLine());
                     sugars += sugarAdd;
                     Console.Clear();
                     DisplayRecipeMenu();
                     break;
                 case "3":
-                    Console.WriteLine("\nHow many Ice Cubes would you like to add?");
+                    Console.WriteLine("\nHow many Ice Cubes would you like to add?\n");
                     int iceAdd = int.Parse(Console.ReadLine());
                     iceCubes += iceAdd;
                     Console.Clear();
                     DisplayRecipeMenu();
                     break;
                 case("4"):
-                    Console.WriteLine("How much would you like to charge per cup? ($0.00)");
-                    double cupPrice = double.Parse(Console.ReadLine());
+                    Console.WriteLine("\nHow much would you like to charge per cup? ($0.00)\n");
+                    cupPrice = double.Parse(Console.ReadLine());
+                    Console.Clear();
+                    DisplayRecipeMenu();
                     break;
                 case ("5"):
-
+                    Console.Clear();
                     break;
                 default:
                     Console.WriteLine("Please enter a number 1-5");

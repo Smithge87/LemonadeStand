@@ -80,6 +80,7 @@ namespace LemonadeStand
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\n\nYOU BOUGHT {0} {1},", quantity, buying);
+                Console.WriteLine("You have ${0} left in your wallet",player.wallet.startingCash);
                 Console.ResetColor();
                 BuyInventoryMenu(player);
 

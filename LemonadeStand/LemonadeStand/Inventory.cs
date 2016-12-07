@@ -118,18 +118,18 @@ namespace LemonadeStand
         public void CreatePitcherMenu()
         {
             Console.WriteLine("\n\n WHAT WOULD YOU LIKE TO DO?");
-            Console.WriteLine("============================");
-            Console.WriteLine(" 1) Mix a pitcher");
-            Console.WriteLine(" 2) Back to Main Menu");
+            Console.WriteLine("============================\n");
+            Console.WriteLine(" 1) Mix a pitcher\n");
+            Console.WriteLine(" 2) Back to Main Menu\n");
             string choice = Console.ReadLine();
             switch (choice)
             {
                 case ("1"):
                    
-                    if ((pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe)) == true)
+                    if (pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe))
                     {
                         MakePitcher();
-                        Console.WriteLine("Pitcher Mixed!");
+                        Console.WriteLine("\nPitcher Mixed!\n");
                     }
                     else
                     {

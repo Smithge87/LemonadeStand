@@ -8,11 +8,20 @@ namespace LemonadeStand
 {
     class Game
     {
-        Rules rules = new Rules();
-        Weather weather = new Weather();
+        Rules rules;
+        Weather weather;
+        Player player;
+        Customer customer;
+        Day day;
 
-        Player player = new Player();
-        
+        public Game()
+        {
+            rules = new Rules();
+            weather = new Weather();
+            player = new Player();
+            customer = new Customer(weather, player.recipe);
+            day = new Day(customer, weather);
+        }
 
         public void StartGame()
         {
@@ -39,6 +48,8 @@ namespace LemonadeStand
             Console.WriteLine("~ 365 days (one year)\n");
             Console.WriteLine("~ Other (enter your own number of days)");
             weather.days = int.Parse(Console.ReadLine());
+            weather.SetClouds();
+            weather.SetTemp();
             Console.Clear();
         }
         public void DisplayDailyMenu()
@@ -50,8 +61,9 @@ namespace LemonadeStand
         public void DisplayDailyInventory()
         {
             Console.WriteLine("\n\n LETS GET READY FOR YOUR DAY!");
-            Console.WriteLine("==============================\n\n");
-            Console.WriteLine("You have ${0} left to spend\n\n", player.wallet.startingCash);
+            Console.WriteLine("==============================\n");
+            Console.WriteLine("You have ${0} in your wallet\n", player.wallet.startingCash);
+            weather.DisplayWeather();
             Console.WriteLine(" INVENTORY");
             Console.WriteLine("===========\n");
             Console.WriteLine(" {0} lemons\n", (player.items.lemons.Count));
@@ -99,6 +111,7 @@ namespace LemonadeStand
                         chosen = false;
                         break;
                     case ("5"):
+                        day.ExecuteDay();
                         break;
                     default:
                         Console.WriteLine("Invalid choice. Please enter a number 1-5");

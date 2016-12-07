@@ -20,7 +20,7 @@ namespace LemonadeStand
             weather = new Weather();
             player = new Player();
             customer = new Customer(weather, player.recipe);
-            day = new Day(customer, weather);
+            day = new Day(customer, weather, player);
         }
 
         public void StartGame()
@@ -47,7 +47,7 @@ namespace LemonadeStand
             Console.WriteLine("~ 180 days (six month)\n");
             Console.WriteLine("~ 365 days (one year)\n");
             Console.WriteLine("~ Other (enter your own number of days)");
-            weather.days = int.Parse(Console.ReadLine());
+            day.days = int.Parse(Console.ReadLine());
             weather.SetClouds();
             weather.SetTemp();
             Console.Clear();
@@ -62,7 +62,7 @@ namespace LemonadeStand
         {
             Console.WriteLine("\n\n LETS GET READY FOR YOUR DAY!");
             Console.WriteLine("==============================\n");
-            Console.WriteLine("You have ${0} in your wallet\n", player.wallet.startingCash);
+            Console.WriteLine("You have {0} days left and ${1} in your wallet\n", day.days, player.wallet.startingCash);
             weather.DisplayWeather();
             Console.WriteLine(" INVENTORY");
             Console.WriteLine("===========\n");

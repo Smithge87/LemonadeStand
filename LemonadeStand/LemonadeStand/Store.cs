@@ -50,21 +50,22 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n\n HOW MANY {0} WOULD YOU LIKE TO BUY?", buying);
                 Console.WriteLine("===========================================\n\n");
-                Console.WriteLine("1) {0} for ${1}0\n", quantity, price);
-                Console.WriteLine("2) {0} for ${1}0\n", quantity * 2, price * 2);
-                Console.WriteLine("3) {0} for ${1}0\n", quantity * 3, price * 3);
+                Console.WriteLine("1) {0} for ${1}\n", quantity, price);
+                Console.WriteLine("2) {0} for ${1}\n", quantity * 2, price * 2);
+                Console.WriteLine("3) {0} for ${1}\n", quantity * 3, price * 3);
                 string choice = Console.ReadLine();
 
                 if (choice == "1")
                 {
-                    amountToBuy = +quantity;
+                    amountToBuy = quantity;
                     cost = price;
                     player.CheckBalance();
                     Purchase(amountToBuy);
                 }
                 else if (choice == "2")
                 {
-                    amountToBuy += (quantity * 2);
+                    quantity = (quantity * 2);
+                    amountToBuy = quantity;
                     cost = (price * 2);
                     player.CheckBalance();
                     Purchase(amountToBuy);
@@ -72,7 +73,7 @@ namespace LemonadeStand
                 }
                 else if (choice == "3")
                 {
-                    amountToBuy = +(quantity * 3);
+                    amountToBuy = (quantity * 3);
                     cost = (price * 3);
                     player.CheckBalance();
                     Purchase(amountToBuy);

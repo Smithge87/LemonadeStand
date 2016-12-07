@@ -10,37 +10,59 @@ namespace LemonadeStand
     {
         Customer customer;
         Weather weather;
+        Player player;
         int purchaseComparer;
         double dailyTotal;
         int customerCount;
+        public int days;
 
-        public Day(Customer customer, Weather weather)
+        public Day(Customer customer, Weather weather, Player player)
         {
             this.customer = customer;
             this.weather = weather;
+            this.player = player;
         }
         public void ExecuteDay()
         {
             customer.CreateCustomerList();
             CreateRandomNumber();
-            
         }
         public void CreateRandomNumber()
         {
             Random random = new Random();
             purchaseComparer = random.Next(0, 101);
         }
-        public void PurchaseLemonade(Wallet wallet, Recipe recipe)
+        public void PurchaseLemonade()
         {
             foreach (Customer customer in customer.customer)
             {
                 if (customer.purchaseChance > purchaseComparer)
                 {
-                    dailyTotal += recipe.cupPrice;
-                    wallet.startingCash += recipe.cupPrice;
-                    customerCount += 1;
+                    if (player.items.CheckPitcherCups())
+                    {
+                        dailyTotal += player.recipe.cupPrice;
+                        player.wallet.startingCash += player.recipe.cupPrice;
+                        customerCount += 1;
+                        player.items.pitcherCups -= 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("YOU SOLD OF LEMONADE!");
+                        Console.ReadLine();
+                    }
+                }
+            }
+        }
+        public void CheckDays()
+        { 
+            for (int i = 0; i < days; i--)
+            {
+                if (days > 0)
+                {
+                    ;
                 }
             }
         }
     }
+              
 }

@@ -11,7 +11,6 @@ namespace LemonadeStand
 
         string randomCloud;
         public int randomTemp;
-        public int days;
         public List<string> clouds = new List<string> { "Rainy", "Cloudy", "Sunny", "Overcast", "Stormy", "Partly Cloudy" };
 
         public void DisplayWeather()

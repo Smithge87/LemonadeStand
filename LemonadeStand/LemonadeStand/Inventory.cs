@@ -10,6 +10,7 @@ namespace LemonadeStand
     {
         public Recipe recipe;
         public Pitcher pitcher;
+        public int pitcherCups;
         public Inventory(Recipe recipe)
         {
             this.recipe = recipe;
@@ -130,6 +131,7 @@ namespace LemonadeStand
                     {
                         MakePitcher();
                         Console.WriteLine("\nPitcher Mixed!\n");
+                        pitcherCups += 10;
                     }
                     else
                     {
@@ -147,6 +149,22 @@ namespace LemonadeStand
 
             }
         }
-    
+        public bool CheckPitcherCups()
+        {
+            bool canMake = false;
+
+            if (pitcherCups > 0)
+            {
+
+                canMake = true;
+            }
+            else
+            {
+                canMake = false;
+            }
+            return canMake;
+        }
     }
+
 }
+

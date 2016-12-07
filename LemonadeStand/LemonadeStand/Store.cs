@@ -69,11 +69,11 @@ namespace LemonadeStand
                     cost = (price * 2);
                     player.CheckBalance();
                     Purchase(amountToBuy);
-
                 }
                 else if (choice == "3")
                 {
-                    amountToBuy = (quantity * 3);
+                    quantity = (quantity * 3);
+                    amountToBuy = quantity;
                     cost = (price * 3);
                     player.CheckBalance();
                     Purchase(amountToBuy);

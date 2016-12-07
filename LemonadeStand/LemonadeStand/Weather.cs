@@ -54,6 +54,11 @@ namespace LemonadeStand
             }
             return randomTemp;
         }
+        public void CreateNewWeather()
+        {
+            SetClouds();
+            SetTemp();
+        }
 
     }
 }

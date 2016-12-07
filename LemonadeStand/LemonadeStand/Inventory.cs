@@ -74,21 +74,21 @@ namespace LemonadeStand
         }
         public void UseLemons(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i--)
+            for (int i = 0; i < amountToUse; i++)
             {
                 lemons.Remove(new Lemon());
             }
         }
         public void UseSugar(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i--)
+            for (int i = 0; i < amountToUse; i++)
             {
                 cupsOfSugar.Remove(new Sugar());
             }
         }
         public void UseIceCubes(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i--)
+            for (int i = 0; i < amountToUse; i++)
             {
                 iceCubes.Remove(new IceCube());
             }
@@ -130,13 +130,16 @@ namespace LemonadeStand
                     if (pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe))
                     {
                         MakePitcher();
+                        Console.Clear();
                         Console.WriteLine("\nPitcher Mixed!\n");
                         pitcherCups += 10;
+                        DisplayPitcherMenu();
                     }
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine("\n\nYou do not have enough resources to do that\n");
+                        Console.WriteLine("\n\nYou do not have enough resources to do that!\n");
+                        Console.WriteLine("Try buying more inventory");
                         DisplayPitcherMenu();
                     }                                        
                     break;

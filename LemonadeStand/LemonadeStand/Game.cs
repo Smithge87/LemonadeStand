@@ -48,8 +48,7 @@ namespace LemonadeStand
             Console.WriteLine("~ 365 days (one year)\n");
             Console.WriteLine("~ Other (enter your own number of days)");
             day.days = int.Parse(Console.ReadLine());
-            weather.SetClouds();
-            weather.SetTemp();
+            weather.CreateNewWeather();
             Console.Clear();
         }
         public void DisplayDailyMenu()
@@ -82,7 +81,7 @@ namespace LemonadeStand
             Console.WriteLine("5) Start your day!\n");
             string choice = Console.ReadLine().ToLower();
             bool chosen = true;
-            while (chosen = true)
+            while (chosen == true)
             {
                 switch (choice)
                 {

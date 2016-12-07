@@ -120,14 +120,18 @@ namespace LemonadeStand
         }
         public void DisplayPitcherInventory()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n PITCHER MENU");
             Console.WriteLine("==============");
+            Console.ResetColor();
             Console.WriteLine("\nYou curently have {0} pitchers mixed. (10 cups per pitcher)", pitchers.Count);
         }
         public void CreatePitcherMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n WHAT WOULD YOU LIKE TO DO?");
             Console.WriteLine("============================\n");
+            Console.ResetColor();
             Console.WriteLine(" 1) Mix a pitcher\n");
             Console.WriteLine(" 2) Back to Main Menu\n");
             string choice = Console.ReadLine();

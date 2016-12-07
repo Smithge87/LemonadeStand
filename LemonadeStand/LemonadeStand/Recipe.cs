@@ -23,22 +23,28 @@ namespace LemonadeStand
 
         public void DisplayCurrentRecipe()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n\n YOUR RECIPE");
             Console.WriteLine("=============");
+            Console.ResetColor();
             Console.WriteLine("\n {0} Lemons", lemons);
             Console.WriteLine("\n {0} Sugars", sugars);
             Console.WriteLine("\n {0} Ice Cubes,", iceCubes);
         }
         public void DisplayCurrentPrice()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n\n YOUR PRICE PER CUP");
             Console.WriteLine("====================\n");
-            Console.WriteLine("${0} per cup", cupPrice);
+            Console.ResetColor();
+            Console.WriteLine(" ${0} per cup", cupPrice);
         }
         public void ChangeRecipeOrPrice()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n\n WHAT WOULD YOU LIKE TO CHNGE?");
             Console.WriteLine("===============================");
+            Console.ResetColor();
             Console.WriteLine("\n 1) Number of Lemons\n");
             Console.WriteLine("\n 2) Number of Sugars\n");
             Console.WriteLine("\n 3) Number of Ice Cubes\n");
@@ -48,42 +54,102 @@ namespace LemonadeStand
             switch (choice)
             {
                 case "1":
-                    Console.WriteLine("\nHow many lemons would you like to add?\n");
-                    int lemonAdd = int.Parse(Console.ReadLine());
-                    lemons += lemonAdd;
-                    Console.Clear();
-                    DisplayRecipeMenu();
+                    AddLemons();
                     break;
                 case "2":
-                    Console.WriteLine("\nHow many sugars would you like to add?\n");
-                    int sugarAdd = int.Parse(Console.ReadLine());
-                    sugars += sugarAdd;
-                    Console.Clear();
-                    DisplayRecipeMenu();
+                    AddSugars();
                     break;
                 case "3":
-                    Console.WriteLine("\nHow many Ice Cubes would you like to add?\n");
-                    int iceAdd = int.Parse(Console.ReadLine());
-                    iceCubes += iceAdd;
-                    Console.Clear();
-                    DisplayRecipeMenu();
+                    AddIceCubes();
                     break;
                 case("4"):
-                    Console.WriteLine("\nHow much would you like to charge per cup? ($0.00)\n");
-                    cupPrice = double.Parse(Console.ReadLine());
-                    Console.Clear();
-                    DisplayRecipeMenu();
+                    SetPrice();
                     break;
                 case ("5"):
                     Console.Clear();
                     break;
                 default:
-                    Console.WriteLine("Please enter a number 1-5");
-                    Console.ReadKey();
+                    Console.Clear();
+                    Console.WriteLine("\n Please enter a number 1-5\n");
+                    DisplayRecipeMenu();
                     break;
             }
 
 
+        }
+        public void AddLemons()
+        {
+            try
+            {
+                Console.WriteLine("\n How many lemons would you like to add?\n");
+                int lemonAdd = int.Parse(Console.ReadLine());
+                lemons += lemonAdd;
+                Console.Clear();
+                DisplayRecipeMenu();
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("\n Oops! I didn't catch that. Please try that again.\n");
+                DisplayRecipeMenu();
+                AddLemons();
+            }
+        }
+        public void AddSugars()
+        {
+            try
+            {
+                Console.WriteLine("\n How many sugars would you like to add?\n");
+                int sugarAdd = int.Parse(Console.ReadLine());
+                sugars += sugarAdd;
+                Console.Clear();
+                DisplayRecipeMenu();
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("\n Oops! I didn't catch that.");
+                Console.WriteLine("\n Please try that again.\n");
+                DisplayRecipeMenu();
+                AddSugars();
+            }
+        }
+        public void AddIceCubes()
+        {
+            try
+            {
+                Console.WriteLine("\n How many Ice Cubes would you like to add?\n");
+                int iceAdd = int.Parse(Console.ReadLine());
+                iceCubes += iceAdd;
+                Console.Clear();
+                DisplayRecipeMenu();
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("\n Oops! I didn't catch that.");
+                Console.WriteLine("\n Please try that again.\n");
+                DisplayRecipeMenu();
+                AddIceCubes();
+            }
+        }
+        public void SetPrice()
+        {
+            try
+            {
+                Console.WriteLine("\n How much would you like to charge per cup? ($0.00)\n");
+                cupPrice = double.Parse(Console.ReadLine());
+                Console.Clear();
+                DisplayRecipeMenu();
+            }
+            catch
+            {
+                Console.Clear();
+                Console.WriteLine("\n Oops! I didn't catch that.");
+                Console.WriteLine("\n Please try that again \n");
+                DisplayRecipeMenu();
+                SetPrice();
+            }
         }
 
     }

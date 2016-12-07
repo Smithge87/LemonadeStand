@@ -58,7 +58,9 @@ namespace LemonadeStand
                     else
                     {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\n\nYOU SOLD OUT OF LEMONADE!\n");
+                    Console.ResetColor();
                     }
                 }
             
@@ -71,8 +73,10 @@ namespace LemonadeStand
         {
             Console.Clear();
             Console.WriteLine("\n\n\nWooHoo! That was fun! Here's how the day went:");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n DAILY RESULTS");
             Console.WriteLine("\n===============");
+            Console.ResetColor();
             Console.WriteLine("\n Total number of customers : {0}", weather.randomTemp);
             Console.WriteLine("\n Total cups of lemonade sold: {0}", customerCount);
             Console.WriteLine("\n Amount of money made today: ${0}", String.Format("{0:0.00}", dailyTotal));
@@ -91,7 +95,9 @@ namespace LemonadeStand
                 }
                 else
                 {
-                    Console.WriteLine("GAME OVER");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("GAME OVER");
+                Console.ResetColor();
                 }
             }
         }

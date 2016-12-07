@@ -23,8 +23,10 @@ namespace LemonadeStand
         }
         public void ExplainStart()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE START");
             Console.WriteLine("----------");
+            Console.ResetColor();
             Console.WriteLine("The game is centered around a child's lemonade stand");
             Console.WriteLine("You will be able to buy inventory, set your price per");
             Console.WriteLine("cup, and create your own recipe for making lemonade.");
@@ -36,8 +38,10 @@ namespace LemonadeStand
         public void ExplainStore()
         {
             Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE STORE");
             Console.WriteLine("===========");
+            Console.ResetColor();
             Console.WriteLine("When visitng the store you can use your money to buy");
             Console.WriteLine("supplies to make great lemonade. If you run out of any");
             Console.WriteLine("important items in the  middle of the day you will have");
@@ -47,8 +51,10 @@ namespace LemonadeStand
         }
         public void ExplainRecipe()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE RECIPE");
             Console.WriteLine("============");
+            Console.ResetColor();
             Console.WriteLine("Every good lemonade is backed by a good recipe. Yours");
             Console.WriteLine("will be made of lemons, sugar, and ice, and you will");
             Console.WriteLine("have to choose what combination your customers will ");
@@ -57,8 +63,10 @@ namespace LemonadeStand
         }
         public void ExplainWeather()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE WEATHER");
             Console.WriteLine("-------------");
+            Console.ResetColor();
             Console.WriteLine("Each morning, you will get a forecast of what the ");
             Console.WriteLine("weather should look like that day. Customers will tend");
             Console.WriteLine("to to buy more lemonade when its sunny and hot!");
@@ -66,8 +74,10 @@ namespace LemonadeStand
         }
         public void ExplainGame()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE GAME");
             Console.WriteLine("-----------");
+            Console.ResetColor();
             Console.WriteLine("Durning the day, your choices will be played out. If ");
             Console.WriteLine("you make good choices, you will be able to stay open ");
             Console.WriteLine("all day and make more money then you've spent. If not");
@@ -78,8 +88,10 @@ namespace LemonadeStand
         }
         public void ExplainEnding()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" THE ENDING");
             Console.WriteLine("------------");
+            Console.ResetColor();
             Console.WriteLine("At the end of each day, you will be told how your day");
             Console.WriteLine("went, and how many resources you have gained to spend");
             Console.WriteLine("in the store for the next day. At the end of your week,");

@@ -73,20 +73,24 @@ namespace LemonadeStand
             while (chosen == true)
             {
                 Console.Clear();
+                DisplayDailyHeader();
                 DisplayDailyInventory();
                 DisplayDailyChoices();
             }
         }
-        public void DisplayDailyInventory()
+        public void DisplayDailyHeader()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n LETS GET READY FOR YOUR DAY!");
             Console.WriteLine("==============================\n");
             Console.ResetColor();
-            Console.WriteLine("You have {0} days left and ${1} in your wallet\n", day.days, String.Format("{0:0.00}", player.wallet.startingCash));
+            Console.WriteLine("You have {0} days left and ${1} in your wallet", day.days, String.Format("{0:0.00}", player.wallet.startingCash));
             weather.DisplayWeather();
+        }
+        public void DisplayDailyInventory()
+        {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(" INVENTORY");
+            Console.WriteLine("\n\n INVENTORY");
             Console.WriteLine("===========\n");
             Console.ResetColor();
             Console.WriteLine(" {0} lemons\n", (player.items.lemons.Count));
@@ -97,10 +101,8 @@ namespace LemonadeStand
         }
         public void DisplayDailyChoices()
         {
-            try
-            {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n\n WHAT WOULD YOU LIKE TO DO?");
+                Console.WriteLine("\n\n\n\n WHAT WOULD YOU LIKE TO DO?");
                 Console.WriteLine("============================\n");
                 Console.ResetColor();
                 Console.WriteLine("1) Buy Inventory\n");
@@ -113,7 +115,7 @@ namespace LemonadeStand
                 {
                     case ("1"):
                         Console.Clear();
-                        store.BuyInventoryMenu(player);
+                        store.BuyInventoryMenu(player, this);
                         break;
                     case ("2"):
                         Console.Clear();
@@ -130,11 +132,13 @@ namespace LemonadeStand
                         day.ExecuteDay();
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Invalid choice. Please enter a number 1-5");
-                        Console.ReadLine();
+                        DisplayDailyInventory();
+                        DisplayDailyChoices();
                         break;
                 }
             }
-        }
+        
     } 
 }

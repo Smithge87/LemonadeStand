@@ -15,8 +15,10 @@ namespace LemonadeStand
 
         public void DisplayWeather()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" TODAY'S WEATHER:");
             Console.WriteLine("=================\n");
+            Console.ResetColor();
             Console.WriteLine("Today's weather will be {0} with a high of {1}\n\n\n", randomCloud, randomTemp);
         }
         public string SetClouds()

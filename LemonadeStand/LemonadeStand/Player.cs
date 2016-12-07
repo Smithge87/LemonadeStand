@@ -13,31 +13,15 @@ namespace LemonadeStand
         public Wallet wallet;
         public Store store;
         public Recipe recipe;
-        public Player()
+        public bool balanced = true;
+        public Player(Store store)
         {
-            recipe =new Recipe();
-            store = new Store();
+            recipe = new Recipe();
+            this.store = store;
             wallet = new Wallet();
-            items= new Inventory(recipe);
+            items = new Inventory(recipe);
         }
-        public void CheckBalance()
-        {
-            bool balanced = true;
-            while (balanced == true)
-            {
-                if ((wallet.startingCash - store.cost) >= 0)
-                {
-                    wallet.startingCash -= store.cost;
-                    balanced = false;
-                }
-                else
-                {
-                    Console.WriteLine("You dont have enough money to do that");
-                    balanced = false;
-                }
-            }
-        }
-
     }
+
 }
 

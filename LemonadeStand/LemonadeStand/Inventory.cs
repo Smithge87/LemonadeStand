@@ -11,6 +11,7 @@ namespace LemonadeStand
         public Recipe recipe;
         public Pitcher pitcher;
         public int pitcherCups;
+        bool pitcherloop;
         public Inventory(Recipe recipe)
         {
             this.recipe = recipe;
@@ -110,11 +111,18 @@ namespace LemonadeStand
         }
         public void DisplayPitcherMenu()
         {
+            pitcherloop = true;
+            while (pitcherloop == true)
+                {
+                DisplayPitcherInventory();
+                CreatePitcherMenu();
+                }
+        }
+        public void DisplayPitcherInventory()
+        {
             Console.WriteLine("\n\n PITCHER MENU");
             Console.WriteLine("==============");
             Console.WriteLine("\nYou curently have {0} pitchers mixed. (10 cups per pitcher)", pitchers.Count);
-            CreatePitcherMenu();
-            Console.ReadLine();
         }
         public void CreatePitcherMenu()
         {
@@ -127,23 +135,22 @@ namespace LemonadeStand
             {
                 case ("1"):
                    
-                    if (pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe))
+                    if ((pitcher.CheckRecipe(lemons, iceCubes, cupsOfSugar, recipe))== true)
                     {
                         MakePitcher();
                         Console.Clear();
                         Console.WriteLine("\nPitcher Mixed!\n");
                         pitcherCups += 10;
-                        DisplayPitcherMenu();
                     }
                     else
                     {
                         Console.Clear();
                         Console.WriteLine("\n\nYou do not have enough resources to do that!\n");
                         Console.WriteLine("Try buying more inventory");
-                        DisplayPitcherMenu();
                     }                                        
                     break;
                 case ("2"):
+                    pitcherloop = false;
                     break;
                 default:
                     Console.WriteLine("Please enter a number 1-2");

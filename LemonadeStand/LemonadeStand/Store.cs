@@ -50,47 +50,59 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n\n HOW MANY {0} WOULD YOU LIKE TO BUY?", buying);
                 Console.WriteLine("===========================================\n\n");
-                Console.WriteLine("1) {0} for ${1}\n", quantity, price);
-                Console.WriteLine("2) {0} for ${1}\n", quantity * 2, price * 2);
-                Console.WriteLine("3) {0} for ${1}\n", quantity * 3, price * 3);
+                Console.WriteLine("1) {0} for ${1}\n", quantity, String.Format("{0:0.00}", price));
+                Console.WriteLine("2) {0} for ${1}\n", quantity * 2, String.Format("{0:0.00}", (price * 1.9)));
+                Console.WriteLine("3) {0} for ${1}\n", quantity * 3, String.Format("{0:0.00}", (price * 2.8)));
                 string choice = Console.ReadLine();
 
                 if (choice == "1")
                 {
                     amountToBuy = quantity;
                     cost = price;
-                    player.CheckBalance();
-                    Purchase(amountToBuy);
+                    if (player.wallet.CheckBalance(cost) == true)
+                    {
+                        Purchase(amountToBuy);
+                        player.wallet.MakeWithdrawl(cost);
+                    }
                 }
                 else if (choice == "2")
                 {
                     quantity = (quantity * 2);
                     amountToBuy = quantity;
-                    cost = (price * 2);
-                    player.CheckBalance();
-                    Purchase(amountToBuy);
+                    cost = (price * 1.9);
+                    if (player.wallet.CheckBalance(cost) == true)
+                    {
+                        Purchase(amountToBuy);
+                        player.wallet.MakeWithdrawl(cost);
+                    }
                 }
                 else if (choice == "3")
                 {
                     quantity = (quantity * 3);
                     amountToBuy = quantity;
-                    cost = (price * 3);
-                    player.CheckBalance();
-                    Purchase(amountToBuy);
+                    cost = (price * 2.8);
+                    if (player.wallet.CheckBalance(cost) == true)
+                    {
+                        Purchase(amountToBuy);
+                        player.wallet.MakeWithdrawl(cost);
+                    }
                 }
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n\nYOU BOUGHT {0} {1},", quantity, buying);
-                Console.WriteLine("You have ${0} left in your wallet",player.wallet.startingCash);
-                Console.ResetColor();
-                BuyInventoryMenu(player);
-
+                if (player.wallet.CheckBalance(cost) == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\n\nYOU BOUGHT {0} {1},", quantity, buying);
+                    Console.WriteLine("You have ${0} left in your wallet", String.Format("{0:0.00}", player.wallet.startingCash));
+                    Console.ResetColor();
+                    BuyInventoryMenu(player);
+                }
+                else
+                {
+                    Console.WriteLine("\n\nYou dont have enough money for that!");
+                    Console.WriteLine("\nYou only have ${0} left in your wallet", String.Format("{0:0.00}", player.wallet.startingCash));
+                    BuyInventoryMenu(player);
+                }
             }
-
-
         }
-
-    }
-
-    
+    }    
 }

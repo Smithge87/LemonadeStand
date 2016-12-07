@@ -46,12 +46,12 @@ namespace LemonadeStand
             else if (recipe.sugars < 4 || recipe.sugars > 5)
             {
                 Random random = new Random();
-                preferSugar = random.Next(6, 16);
+                preferSugar = random.Next(10, 16);
             }
             else if (recipe.sugars == 5 || recipe.sugars == 4)
             {
                 Random random = new Random();
-                preferSugar = random.Next(16, 26);
+                preferSugar = random.Next(21, 26);
             }
         }
         public void PreferLemons()
@@ -64,12 +64,12 @@ namespace LemonadeStand
             else if (recipe.lemons < 4 || recipe.lemons > 5)
             {
                 Random random = new Random();
-                preferLemons = random.Next(6, 16);
+                preferLemons = random.Next(10, 16);
             }
             else if (recipe.lemons == 5 || recipe.lemons == 4)
             {
                 Random random = new Random();
-                preferLemons = random.Next(16, 26);
+                preferLemons = random.Next(20, 26);
             }
         }
         public void PreferIce()

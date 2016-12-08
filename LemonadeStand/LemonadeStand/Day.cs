@@ -21,17 +21,22 @@ namespace LemonadeStand
         double dailyTotal;
         int customerCount;
         public int days;
-        double gameTotal;
-        int customerTotal;
+        public double gameTotal;
+        public int customerTotal;
         bool soldOut = false;
+        double beginningBalance;
         public List<Customer> customer = new List<Customer>();
         public void ExecuteDay()
         {
             CreateCustomerList();
             ProcessPotentials();
-            CreateOverallTotal();
+            CreateOverallTotals();
             DisplayDayResults();
-            CheckDays();
+            CleanDay();
+        }
+        public void SetBeginningValues()
+        {
+            beginningBalance = player.wallet.startingCash;
         }
         public void CreateCustomerList()
         {
@@ -48,8 +53,10 @@ namespace LemonadeStand
             foreach (Customer customer in customer)
             {
                 if (soldOut == false)
+                {
                     CreateRandomNumber();
                     PurchaseLemonade(customer);
+                }
             }
         }
         public void CreateRandomNumber()
@@ -77,49 +84,43 @@ namespace LemonadeStand
             }
 
         }
-        public void CreateOverallTotal()
+        public void CreateOverallTotals()
         {
             gameTotal += dailyTotal;
             customerTotal += customerCount;
+
         }
         public void DisplayDayResults()
         {
             Console.WriteLine("\n\n\nWooHoo! That was fun! Here's how the day went:");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n DAILY RESULTS");
-            Console.WriteLine("\n===============");
+            Console.WriteLine("\n===============\n");
             Console.ResetColor();
             Console.WriteLine("\n Total number of customers : {0}", weather.randomTemp);
             Console.WriteLine("\n Total cups of lemonade sold: {0}", customerCount);
             Console.WriteLine("\n Amount of money made today: ${0}", String.Format("{0:0.00}", dailyTotal));
-            Console.WriteLine("\n Total amount of money made: ${0}", String.Format("{0:0.00}", gameTotal));
+            Console.WriteLine("\n Total amount of money made total: ${0}", String.Format("{0:0.00}", gameTotal));
+            Console.WriteLine("");
+            Console.WriteLine("\n Total amount you've spent on supplies today: ${0})", String.Format("{0:0.00}", player.wallet.spentCashToday)) ;
+            Console.WriteLine("\n Daily profit/loss: ${0}", (String.Format("{0:0.00}", (dailyTotal -= player.wallet.spentCashToday))));
+            Console.WriteLine("\n Total profit/loss: ${0}", (String.Format("{0:0.00}", (gameTotal -= player.wallet.spentCashTotal))));
+            Console.WriteLine("\n Your new balance: ${0}", (String.Format("{0:0.00}", player.wallet.startingCash )));
             Console.WriteLine("\n\nPlease press 'enter' to continue");
             Console.ReadLine();
         }
-        public void CheckDays()
+        public void CleanDay()
         {
+            weather.CreateNewWeather();
+            player.items.pitchers.Clear();
+            player.items.iceCubes.Clear();
+            dailyTotal = 0;
+            player.wallet.spentCashToday = 0;
+            customerCount = 0;
+            player.items.pitcherCups = 0;
+            soldOut = false;
             days -= 1;
-            if (days > 0)
-            {
-                weather.CreateNewWeather();
-                player.items.pitchers.Clear();
-                player.items.iceCubes.Clear();
-                dailyTotal = 0;
-                customerCount = 0;
-                player.items.pitcherCups = 0;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\n\n\n\n\n\n\n\n\n\nGAME OVER\n\n");
-                Console.WriteLine(" In total, you sold {0} cups of lemonade for a profit of {1}.\n");
-                Console.WriteLine(" Great job! Come Back soon!\n\n ");
-                Console.WriteLine(" Would you like to start another game? (y/n)");
-                Console.ReadLine();
-                Environment.Exit(0);
-                Console.ResetColor();
-            }
-        }
+         }        
     }
 }
               

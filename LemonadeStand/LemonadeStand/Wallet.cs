@@ -8,6 +8,8 @@ namespace LemonadeStand
 {
     class Wallet
     {
+        public double spentCashToday;
+        public double spentCashTotal;
         public double startingCash = 10;
         public bool CheckBalance(double cost)
         {
@@ -23,6 +25,8 @@ namespace LemonadeStand
         public void MakeWithdrawl(double cost)
         {
             startingCash -= cost;
+            spentCashToday += cost;
+            spentCashTotal += cost;
         }
     }
 }

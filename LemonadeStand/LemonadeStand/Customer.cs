@@ -8,11 +8,6 @@ namespace LemonadeStand
 {
     class Customer
     {
-        int preferSugar;
-        int preferLemons;
-        int preferIce;
-        int preferPrice;
-        public int purchaseChance;
         public Recipe recipe;
         public Weather weather;
         public Random random;
@@ -27,6 +22,11 @@ namespace LemonadeStand
             PreferPrice();
             purchaseChance = preferSugar + preferLemons + preferIce + preferPrice;
         }
+        public int purchaseChance;
+        int preferSugar;
+        int preferLemons;
+        int preferIce;
+        int preferPrice;
         public void PreferSugar()
         {
             if (recipe.sugars < 2 || recipe.sugars > 7)

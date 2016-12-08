@@ -53,8 +53,7 @@ namespace LemonadeStand
                     break;
                     
                 default:
-                    break;
-                    
+                    break;                    
             }
             return randomTemp;
         }
@@ -63,9 +62,5 @@ namespace LemonadeStand
             SetClouds();
             SetTemp();
         }
-
     }
 }
-    
-
-

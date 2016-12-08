@@ -15,7 +15,6 @@ namespace LemonadeStand
         Day day;
         Store store;
         Random random;
-
         public Game()
         {
             random = new Random();
@@ -26,7 +25,6 @@ namespace LemonadeStand
             customer = new Customer(weather, player.recipe, random);
             day = new Day(weather, player, random);
         }
-
         public void StartGame()
         {
             EnterGame();
@@ -71,14 +69,19 @@ namespace LemonadeStand
         }
         public void DisplayDailyMenu()
         {
-            bool chosen = true;
-            while (chosen == true)
-            {
-                Console.Clear();
-                DisplayDailyHeader();
-                DisplayDailyInventory();
-                DisplayDailyChoices();
-            }
+                if (day.days > 0)
+                {
+                    Console.Clear();
+                    DisplayDailyHeader();
+                    DisplayDailyInventory();
+                    DisplayDailyChoices();
+                    DisplayDailyMenu();
+                }
+                else
+                {
+                    TheEndOFDays();
+                }
+            
         }
         public void DisplayDailyHeader()
         {
@@ -154,7 +157,8 @@ namespace LemonadeStand
             switch (choice)
             {
                 case ("y"):
-                    EnterGame();
+                    Console.Clear();
+                    StartGame();
                     break;
                 case ("n"):
                     Environment.Exit(0);
@@ -163,8 +167,8 @@ namespace LemonadeStand
                     Console.Clear();
                     Console.WriteLine("Invalid choice. Please enter a number 1-5");
                     TheEndOFDays();
-                    break;            }
-        }
-        
+                    break;
+            }        
+        }   
     } 
 }

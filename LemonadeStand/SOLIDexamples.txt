@@ -1,0 +1,13 @@
+SOLID principles:
+
+1. In multiple places throughout my code I used the concept of 'Single Responsibility'. 
+A good example of this is my switch/case in the Recipe class.
+A week ago each case would have been filled with functions I was creating under each
+case, but now I know to create the function elsewhere and then call it into the case.
+
+Another example would be the execution of my day class and game loop. The functions that 
+run inside them are created elsewhere and called to the "StartGame" and "ExecuteDay" functions.
+
+2. I also used the open/closed principle when my store class interacts with my wallet class. A single variable
+can be created in a number of ways in the store class, but the wallet class is designed to be able to deal with
+that value no matter where it comes from or how it is created.

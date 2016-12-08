@@ -34,19 +34,19 @@ namespace LemonadeStand
         public void CreateRandomNumber()
         {
             Random random = new Random();
-            purchaseComparer = random.Next(0,50);
+            purchaseComparer = random.Next(0,100);
         }
         public void CompareLoop()
         {
-            CreateRandomNumber();
             foreach (Customer customer in customer.customer)
             {
-                PurchaseLemonade();
+                PurchaseLemonade(customer);
             }
         }
-        public void PurchaseLemonade()
+        public void PurchaseLemonade(Customer customer)
         {
-                if (customer.purchaseChance > purchaseComparer)
+            CreateRandomNumber();
+            if (customer.purchaseChance > purchaseComparer)
                 {
                     if (player.items.CheckPitcherCups())
                     {

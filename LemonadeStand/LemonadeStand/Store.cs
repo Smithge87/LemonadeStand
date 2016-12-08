@@ -11,14 +11,13 @@ namespace LemonadeStand
     {
         public int amountToBuy;
         public double cost;
-        int quantity;
-        string buying;
-
         public void BuyInventoryMenu(Player player, Game game)
         {
             game.DisplayDailyInventory();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n\n WHAT WOULD YOU LIKE TO BUY?");
             Console.WriteLine("=============================\n\n");
+            Console.ResetColor();
             Console.WriteLine(" 1) Cups\n");
             Console.WriteLine(" 2) Lemons\n");
             Console.WriteLine(" 3) Sugar\n");
@@ -109,7 +108,7 @@ namespace LemonadeStand
             else
             {
                 Console.Clear();
-                Console.WriteLine("\nInvalid entry, Please press 'enter' and try agin\n");
+                Console.WriteLine("\nInvalid entry, Please try agin\n");
                 BuyInventoryMenu(player, game);
             }
         }

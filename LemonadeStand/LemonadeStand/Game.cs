@@ -14,6 +14,7 @@ namespace LemonadeStand
         Customer customer;
         Day day;
         Store store;
+        Random random;
 
         public Game()
         {
@@ -21,8 +22,10 @@ namespace LemonadeStand
             rules = new Rules();
             weather = new Weather();
             player = new Player(store);
-            customer = new Customer(weather, player.recipe);
+            random = new Random();
+            customer = new Customer(weather, player.recipe, random);
             day = new Day(customer, weather, player);
+            
         }
 
         public void StartGame()
@@ -84,7 +87,7 @@ namespace LemonadeStand
             Console.WriteLine("\n\n LETS GET READY FOR YOUR DAY!");
             Console.WriteLine("==============================\n");
             Console.ResetColor();
-            Console.WriteLine("You have {0} days left and ${1} in your wallet", day.days, String.Format("{0:0.00}", player.wallet.startingCash));
+            Console.WriteLine("You have {0} days left and ${1} in your wallet\n", day.days, String.Format("{0:0.00}", player.wallet.startingCash));
             weather.DisplayWeather();
         }
         public void DisplayDailyInventory()

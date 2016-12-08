@@ -18,14 +18,13 @@ namespace LemonadeStand
 
         public Game()
         {
+            random = new Random();
             store = new Store();
             rules = new Rules();
-            weather = new Weather();
+            weather = new Weather(random);
             player = new Player(store);
-            random = new Random();
             customer = new Customer(weather, player.recipe, random);
-            day = new Day(customer, weather, player);
-            
+            day = new Day(weather, player, random);
         }
 
         public void StartGame()
@@ -110,7 +109,7 @@ namespace LemonadeStand
                 Console.ResetColor();
                 Console.WriteLine("1) Buy Inventory\n");
                 Console.WriteLine("2) Change Recipe or Price per Cup\n");
-                Console.WriteLine("3) Make Pitches of Lemonade\n");
+                Console.WriteLine("3) Make Pitchers of Lemonade\n");
                 Console.WriteLine("4) See the Rules\n");
                 Console.WriteLine("5) Start your day!\n");
                 string choice = Console.ReadLine().ToLower();
@@ -132,6 +131,7 @@ namespace LemonadeStand
                         rules.GetRules();
                         break;
                     case ("5"):
+                        Console.Clear();
                         day.ExecuteDay();
                         break;
                     default:
@@ -141,7 +141,30 @@ namespace LemonadeStand
                         DisplayDailyChoices();
                         break;
                 }
-            }
+        }
+        public void TheEndOFDays()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n\n\n\n\n\n\n\n\n\nGAME OVER\n\n");
+            Console.WriteLine(" In total, you sold {0} cups of lemonade for a profit of {1}.\n");
+            Console.WriteLine(" Great job! Come Back soon!\n\n ");
+            Console.WriteLine(" Would you like to start another game? (y/n)");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case ("y"):
+                    EnterGame();
+                    break;
+                case ("n"):
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Invalid choice. Please enter a number 1-5");
+                    TheEndOFDays();
+                    break;            }
+        }
         
     } 
 }

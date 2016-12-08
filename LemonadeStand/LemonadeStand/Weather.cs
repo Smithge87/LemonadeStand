@@ -8,6 +8,12 @@ namespace LemonadeStand
 {
     class Weather
     {
+        Random random;
+
+        public Weather(Random random)
+        {
+            this.random = random;
+        }
 
         string randomCloud;
         public int randomTemp;
@@ -23,7 +29,6 @@ namespace LemonadeStand
         }
         public string SetClouds()
         {
-            Random random = new Random();
             int randomWeather = random.Next(clouds.Count);
             randomCloud = clouds[randomWeather];
             return randomCloud;
@@ -34,20 +39,17 @@ namespace LemonadeStand
             {
                 case "Sunny":
                 case "Partly Cloudy":
-                    Random random = new Random();
                     randomTemp = random.Next(80,100);
                     break;
                     
                 case "Cloudy":
                 case "Overcast":
-                    Random randoms = new Random();
-                    randomTemp = randoms.Next(65, 85);
+                    randomTemp = random.Next(65, 85);
                     break;
                     
                 case "Rainy":
                 case "Stormy":
-                    Random randome = new Random();
-                    randomTemp = randome.Next(50, 70);
+                    randomTemp = random.Next(50, 70);
                     break;
                     
                 default:

@@ -37,7 +37,7 @@ namespace LemonadeStand
             Console.WriteLine("\n\n\n YOUR PRICE PER CUP");
             Console.WriteLine("====================\n");
             Console.ResetColor();
-            Console.WriteLine(" ${0} per cup", cupPrice);
+            Console.WriteLine(" ${0} per cup", String.Format("{0:0.00}", cupPrice) );
         }
         public void ChangeRecipeOrPrice()
         {
@@ -46,7 +46,7 @@ namespace LemonadeStand
             Console.WriteLine("===============================");
             Console.ResetColor();
             Console.WriteLine("\n 1) Number of Lemons\n");
-            Console.WriteLine("\n 2) Number of Sugars\n");
+            Console.WriteLine("\n 2) Cups of Sugar\n");
             Console.WriteLine("\n 3) Number of Ice Cubes\n");
             Console.WriteLine("\n 4) Price per Cup\n");
             Console.WriteLine("\n 5) Return to Main Menu\n");
@@ -81,9 +81,9 @@ namespace LemonadeStand
         {
             try
             {
-                Console.WriteLine("\n How many lemons would you like to add?\n");
+                Console.WriteLine("\n How many lemons would you like to use per pitcher?\n");
                 int lemonAdd = int.Parse(Console.ReadLine());
-                lemons += lemonAdd;
+                lemons = lemonAdd;
                 Console.Clear();
                 DisplayRecipeMenu();
             }
@@ -99,9 +99,9 @@ namespace LemonadeStand
         {
             try
             {
-                Console.WriteLine("\n How many sugars would you like to add?\n");
+                Console.WriteLine("\n How many cups of sugar would you like to use per pitcher?\n");
                 int sugarAdd = int.Parse(Console.ReadLine());
-                sugars += sugarAdd;
+                sugars = sugarAdd;
                 Console.Clear();
                 DisplayRecipeMenu();
             }
@@ -118,9 +118,9 @@ namespace LemonadeStand
         {
             try
             {
-                Console.WriteLine("\n How many Ice Cubes would you like to add?\n");
+                Console.WriteLine("\n How many Ice Cubes would you like to use per pitcher?\n");
                 int iceAdd = int.Parse(Console.ReadLine());
-                iceCubes += iceAdd;
+                iceCubes = iceAdd;
                 Console.Clear();
                 DisplayRecipeMenu();
             }

@@ -118,8 +118,8 @@ namespace LemonadeStand
             if (player.wallet.CheckBalance(cost) == true)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Transaction complete!");
-                Console.WriteLine("You have ${0} left in your wallet", String.Format("{0:0.00}", player.wallet.startingCash));
+                Console.WriteLine("\nTransaction complete!\n");
+                Console.WriteLine("You have ${0} left in your wallet\n", String.Format("{0:0.00}", player.wallet.startingCash));
                 Console.ResetColor();
                 BuyInventoryMenu(player, game);
             }

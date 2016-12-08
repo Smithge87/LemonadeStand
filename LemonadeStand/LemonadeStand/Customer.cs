@@ -15,7 +15,6 @@ namespace LemonadeStand
         public int purchaseChance;
         public Recipe recipe;
         public Weather weather;
-        public List<Customer> customer = new List<Customer>();
         public Random random;
         public Customer(Weather weather, Recipe recipe, Random random)
         {
@@ -27,16 +26,6 @@ namespace LemonadeStand
             PreferLemons();
             PreferPrice();
             purchaseChance = preferSugar + preferLemons + preferIce + preferPrice;
-        }
-        public void CreateCustomerList()
-        {
-            for (int i = 0; i < weather.randomTemp; i++)
-            {
-                if (weather.randomTemp > 0)
-                {
-                    customer.Add(new Customer(weather, recipe, random));
-                }
-            }
         }
         public void PreferSugar()
         {

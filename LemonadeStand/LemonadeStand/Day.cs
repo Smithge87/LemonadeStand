@@ -8,70 +8,82 @@ namespace LemonadeStand
 {
     class Day
     {
-        Customer customer;
+        Random random;
         Weather weather;
         Player player;
+        public Day( Weather weather, Player player, Random random)
+        {
+            this.weather = weather;
+            this.player = player;
+            this.random = random;
+        }
         int purchaseComparer;
         double dailyTotal;
         int customerCount;
         public int days;
         double gameTotal;
-
-        public Day(Customer customer, Weather weather, Player player)
-        {
-            this.customer = customer;
-            this.weather = weather;
-            this.player = player;
-        }
+        int customerTotal;
+        bool soldOut = false;
+        public List<Customer> customer = new List<Customer>();
         public void ExecuteDay()
         {
-            customer.CreateCustomerList();
-            CompareLoop();
+            CreateCustomerList();
+            ProcessPotentials();
             CreateOverallTotal();
             DisplayDayResults();
             CheckDays();
         }
+        public void CreateCustomerList()
+        {
+            for (int i = 0; i < weather.randomTemp; i++)
+            {
+                if (weather.randomTemp > 0)
+                {
+                    customer.Add(new Customer(weather, player.recipe, random));
+                }
+            }
+        }
+        public void ProcessPotentials()
+        {
+            foreach (Customer customer in customer)
+            {
+                if (soldOut == false)
+                    CreateRandomNumber();
+                    PurchaseLemonade(customer);
+            }
+        }
         public void CreateRandomNumber()
         {
-            Random random = new Random();
-            purchaseComparer = random.Next(0,100);
-        }
-        public void CompareLoop()
-        {
-            foreach (Customer customer in customer.customer)
-            {
-                PurchaseLemonade(customer);
-            }
+            purchaseComparer = random.Next(0, 100);
         }
         public void PurchaseLemonade(Customer customer)
         {
-            CreateRandomNumber();
             if (customer.purchaseChance > purchaseComparer)
+            {
+                if (player.items.CheckPitcherCups())
                 {
-                    if (player.items.CheckPitcherCups())
-                    {
-                        dailyTotal += player.recipe.cupPrice;
-                        player.wallet.startingCash += player.recipe.cupPrice;
-                        customerCount += 1;
-                        player.items.pitcherCups -= 1;
-                    }
-                    else
-                    {
-                    Console.Clear();
+                    dailyTotal += player.recipe.cupPrice;
+                    player.wallet.startingCash += player.recipe.cupPrice;
+                    customerCount += 1;
+                    player.items.pitcherCups -= 1;
+                }
+                else
+                {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\n\nYOU SOLD OUT OF LEMONADE!\n");
                     Console.ResetColor();
-                    }
+                    soldOut = true;
                 }
-            
+            }
+
         }
         public void CreateOverallTotal()
         {
             gameTotal += dailyTotal;
+            customerTotal += customerCount;
         }
         public void DisplayDayResults()
         {
-            Console.Clear();
             Console.WriteLine("\n\n\nWooHoo! That was fun! Here's how the day went:");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n DAILY RESULTS");
@@ -85,22 +97,30 @@ namespace LemonadeStand
             Console.ReadLine();
         }
         public void CheckDays()
-        { 
-                if (days > 0)
-                {
-                    weather.CreateNewWeather();
-                    player.items.pitchers.Clear();
-                    player.items.iceCubes.Clear();
-                    days -= 1;                   
-                }
-                else
-                {
+        {
+            days -= 1;
+            if (days > 0)
+            {
+                weather.CreateNewWeather();
+                player.items.pitchers.Clear();
+                player.items.iceCubes.Clear();
+                dailyTotal = 0;
+                customerCount = 0;
+                player.items.pitcherCups = 0;
+            }
+            else
+            {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("GAME OVER");
+                Console.WriteLine("\n\n\n\n\n\n\n\n\n\nGAME OVER\n\n");
+                Console.WriteLine(" In total, you sold {0} cups of lemonade for a profit of {1}.\n");
+                Console.WriteLine(" Great job! Come Back soon!\n\n ");
+                Console.WriteLine(" Would you like to start another game? (y/n)");
+                Console.ReadLine();
+                Environment.Exit(0);
                 Console.ResetColor();
-                }
             }
         }
     }
+}
               
 

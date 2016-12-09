@@ -83,14 +83,18 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n How many lemons would you like to use per pitcher?\n");
                 int lemonAdd = int.Parse(Console.ReadLine());
-                lemons = lemonAdd;
-                Console.Clear();
-                DisplayRecipeMenu();
+                if (lemonAdd >= 0)
+                {
+                    lemons = lemonAdd;
+                    Console.Clear();
+                    DisplayRecipeMenu();
+                }
+                
             }
             catch
             {
                 Console.Clear();
-                Console.WriteLine("\n Oops! I didn't catch that. Please try that again.\n");
+                Console.WriteLine("\n Oops! I didn't catch that. Please enter a positive, whole number.\n");
                 DisplayRecipeMenu();
                 AddLemons();
             }

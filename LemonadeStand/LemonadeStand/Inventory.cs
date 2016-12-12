@@ -12,6 +12,7 @@ namespace LemonadeStand
         public Pitcher pitcher;
         public int pitcherCups;
         bool pitcherloop;
+        int amountToBuy;
         public Inventory(Recipe recipe)
         {
             this.recipe = recipe;
@@ -75,31 +76,19 @@ namespace LemonadeStand
         }
         public void UseLemons(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i++)
-            {
-                lemons.Remove(new Lemon());
-            }
+                lemons.RemoveRange(0,amountToUse);
         }
         public void UseSugar(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i++)
-            {
-                cupsOfSugar.Remove(new Sugar());
-            }
+            cupsOfSugar.RemoveRange(0, amountToUse);
         }
         public void UseIceCubes(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i++)
-            {
-                iceCubes.Remove(new IceCube());
-            }
+            iceCubes.RemoveRange(0, amountToUse);
         }
         public void UseCups(int amountToUse)
         {
-            for (int i = 0; i < amountToUse; i--)
-            {
-                cups.Remove(new Cup());
-            }
+            cups.RemoveRange(0, amountToUse);
         }
         public void MakePitcher()
         {
@@ -107,7 +96,7 @@ namespace LemonadeStand
             UseSugar(recipe.sugars);
             UseLemons(recipe.lemons);
             UseIceCubes(recipe.iceCubes);
-            UseCups(-10);
+            UseCups(10);
         }
         public void DisplayPitcherMenu()
         {

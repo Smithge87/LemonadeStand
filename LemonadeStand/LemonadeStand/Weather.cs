@@ -39,21 +39,21 @@ namespace LemonadeStand
             {
                 case "Sunny":
                 case "Partly Cloudy":
-                    randomTemp = random.Next(80,100);
+                    randomTemp = random.Next(80, 100);
                     break;
-                    
+
                 case "Cloudy":
                 case "Overcast":
                     randomTemp = random.Next(65, 85);
                     break;
-                    
+
                 case "Rainy":
                 case "Stormy":
                     randomTemp = random.Next(50, 70);
                     break;
-                    
+
                 default:
-                    break;                    
+                    break;
             }
             return randomTemp;
         }
@@ -62,5 +62,16 @@ namespace LemonadeStand
             SetClouds();
             SetTemp();
         }
+        //public void AddWeatherToArray()
+        //{
+        //    var dayCreated = [SetClouds(), SetTemp()];
+
+        //}
+        //string[,] weathers;
+        //public void CreateWeek()
+        //{
+
+        //}
+
     }
 }

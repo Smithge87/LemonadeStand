@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Store
+    public class Store
     {
         public int amountToBuy;
         public double cost;

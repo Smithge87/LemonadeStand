@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Day
+    public class Day
     {
         Random random;
         Weather weather;
@@ -17,9 +17,9 @@ namespace LemonadeStand
             this.player = player;
             this.random = random;
         }
-        int purchaseComparer;
-        double dailyTotal;
-        int customerCount;
+        public int purchaseComparer;
+        public double dailyTotal;
+        public int customerCount;
         public int days;
         public double gameTotal;
         public int customerTotal;

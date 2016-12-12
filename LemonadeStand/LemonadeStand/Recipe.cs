@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LemonadeStand
 {
-    class Recipe
+    public class Recipe
     {
         public int lemons;
         public int sugars;
@@ -105,9 +105,12 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n How many cups of sugar would you like to use per pitcher?\n");
                 int sugarAdd = int.Parse(Console.ReadLine());
-                sugars = sugarAdd;
-                Console.Clear();
-                DisplayRecipeMenu();
+                if (sugarAdd >= 0)
+                {
+                    sugars = sugarAdd;
+                    Console.Clear();
+                    DisplayRecipeMenu();
+                }
             }
             catch
             {
@@ -124,9 +127,12 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n How many Ice Cubes would you like to use per pitcher?\n");
                 int iceAdd = int.Parse(Console.ReadLine());
-                iceCubes = iceAdd;
-                Console.Clear();
-                DisplayRecipeMenu();
+                if (iceAdd >= 0)
+                {
+                    iceCubes = iceAdd;
+                    Console.Clear();
+                    DisplayRecipeMenu();
+                }
             }
             catch
             {
@@ -143,8 +149,11 @@ namespace LemonadeStand
             {
                 Console.WriteLine("\n How much would you like to charge per cup? ($0.00)\n");
                 cupPrice = double.Parse(Console.ReadLine());
-                Console.Clear();
-                DisplayRecipeMenu();
+                if (cupPrice >= 0)
+                {
+                    Console.Clear();
+                    DisplayRecipeMenu();
+                }
             }
             catch
             {

@@ -12,7 +12,6 @@ namespace LemonadeStand
         public Pitcher pitcher;
         public int pitcherCups;
         bool pitcherloop;
-        int amountToBuy;
         public Inventory(Recipe recipe)
         {
             this.recipe = recipe;

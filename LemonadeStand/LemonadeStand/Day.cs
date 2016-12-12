@@ -120,6 +120,7 @@ namespace LemonadeStand
             player.items.pitcherCups = 0;
             soldOut = false;
             days -= 1;
+            customer.Clear();
          }        
     }
 }

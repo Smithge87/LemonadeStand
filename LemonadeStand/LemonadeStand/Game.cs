@@ -150,7 +150,7 @@ namespace LemonadeStand
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\n\n\n\n\n\n\n\n\nGAME OVER\n\n");
-            Console.WriteLine(" In total, you sold {0} cups of lemonade for a profit of {1}.\n");
+            Console.WriteLine(" In total, you sold {0} cups of lemonade for a profit of {1}.\n", day.customerTotal, day.gameTotal);
             Console.WriteLine(" Great job! Come Back soon!\n\n ");
             Console.WriteLine(" Would you like to start another game? (y/n)");
             string choice = Console.ReadLine();
